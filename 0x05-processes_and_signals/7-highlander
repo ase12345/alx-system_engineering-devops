@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
-# Displays 'To infinity and beyond' indefinitely, and 'I am invincible!!!' when receiving a SIGTERM.
-while true
+# script that displays To infinity and beyond indefinitely.
+# shellcheck disable=SC2009
+
+function no_ctrlc()
+{
+    echo "I am invincible!!!"
+}
+
+
+trap no_ctrlc SIGTERM
+
+while :
 do
     echo "To infinity and beyond"
     sleep 2
-    trap 'echo "I am invincible!!!"' SIGTERM
 done
+
